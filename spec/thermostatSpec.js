@@ -20,4 +20,20 @@ describe('Thermostat', function(){
     expect(thermostat.getTemp()).toEqual(19);
   });
 
+  it('has minimum temp', function() {
+    for (i=0; i < 10; i++) {
+        thermostat.colder();
+    }
+    expect(function(){thermostat.colder();}).toThrow(new Error("Minimum Temp reached."));
+
+  });
+
+  it('has max temp', function() {
+    for (i=0; i < 5; i++) {
+        thermostat.hotter();
+    }
+    expect(function(){thermostat.hotter();}).toThrow(new Error("Maximum Temp reached."));
+
+  });
+
 });
