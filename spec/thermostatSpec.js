@@ -25,7 +25,6 @@ describe('Thermostat', function(){
         thermostat.colder();
     }
     expect(function(){thermostat.colder();}).toThrow(new Error("Minimum Temp reached."));
-
   });
 
   it('has max temp', function() {
@@ -33,7 +32,10 @@ describe('Thermostat', function(){
         thermostat.hotter();
     }
     expect(function(){thermostat.hotter();}).toThrow(new Error("Maximum Temp reached."));
+  });
 
+  it('has power saving mode', function(){
+    expect(thermostat.isPsmOn()).toBe(true)
   });
 
 });
