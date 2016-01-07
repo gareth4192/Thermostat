@@ -3,7 +3,7 @@ Thermostat = function(){
   this.STARTING_TEMP = 20;
   this.temp = this.STARTING_TEMP;
   this.MINIMUM_TEMP = 10;
-  this.MAXIMUM_TEMP = 25;
+  this.MAXIMUM_TEMP = 32;
 }
 Thermostat.prototype.getTemp = function(){
   return this.temp;

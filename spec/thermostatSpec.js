@@ -29,7 +29,7 @@ describe('Thermostat', function(){
   });
 
   it('has max temp', function() {
-    for (i=0; i < 5; i++) {
+    for (i=0; i < 12; i++) {
         thermostat.hotter();
     }
     expect(function(){thermostat.hotter();}).toThrow(new Error("Maximum Temp reached."));
