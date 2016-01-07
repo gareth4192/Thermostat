@@ -1,6 +1,7 @@
 
 Thermostat = function(){
-  this.temp = 20;
+  this.STARTING_TEMP = 20;
+  this.temp = this.STARTING_TEMP;
 }
 Thermostat.prototype.getTemp = function(){
   return this.temp;
