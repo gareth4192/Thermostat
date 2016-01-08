@@ -53,10 +53,10 @@ Thermostat.prototype.resetTemp = function(){
 
 Thermostat.prototype.energyUsage = function() {
   if (this.temp < this.MEDIUM_USAGE) {
-    return 'low-usage';
+    return 'green';
   }
-  if (this.temp >= this.MEDIUM_USAGE && this.temperature <= this.PSM_MAXIMUM_TEMP) {
-    return 'medium-usage';
+  if (this.temp >= this.MEDIUM_USAGE && this.temp <= this.PSM_MAXIMUM_TEMP) {
+    return 'amber';
   }
-  return 'high-usage';
+  return 'red';
 }
