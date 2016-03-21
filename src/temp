@@ -1,0 +1,13 @@
+// function displayWeather(city) {
+//   var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+//   var token = '&apiid=bac8602652d7f1b1a2b31c1a8960e976';
+//   var units = '&units=metric';
+//   $.get(url + token + units, function(data) {
+//   $('#current-temp').text(data.main.temp);
+// });
+
+// $('#select-city').submit(function(event) {
+// event.preventDefault();
+// var city = $('#current-city').val();
+// displayWeather(city);
+// });

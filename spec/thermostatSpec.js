@@ -15,6 +15,7 @@ describe('Thermostat', function(){
     expect(thermostat.getTemp()).toEqual(21);
   });
 
+
   it('temp can be decreaded', function(){
     thermostat.colder();
     expect(thermostat.getTemp()).toEqual(19);
@@ -28,7 +29,7 @@ describe('Thermostat', function(){
   });
 
   it('has max temp of 32 when psm is off', function() {
-    thermostat.psm = false;
+    thermostat.psmOff()
     expect(thermostat.isPsmOn()).toBe(false)
     for (i=0; i < 12; i++) {
         thermostat.hotter();
@@ -43,6 +44,21 @@ describe('Thermostat', function(){
     expect(function(){thermostat.hotter();}).toThrow(new Error("Maximum Temp reached."));
   });
 
+  it('if current temp > 25, psm sets it to 25', function() {
+    thermostat.psmOff();
+    for (i=0; i < 8; i++) {
+        thermostat.hotter();
+    }
+    thermostat.psmOn();
+    expect(thermostat.temp).toEqual(25)
+  });
+
+  it('if current temp <= 25, it does not change', function(){
+    thermostat.psmOff();
+    thermostat.hotter();
+    thermostat.psmOn();
+    expect(thermostat.temp).toEqual(21)
+  });
 
   it('has power saving mode', function(){
     expect(thermostat.isPsmOn()).toBe(true)
@@ -73,23 +89,23 @@ describe('Thermostat', function(){
         for (var i = 0; i < 3; i++) {
           thermostat.colder();
         }
-        expect(thermostat.energyUsage()).toEqual('green');
+        expect(thermostat.energyUsage()).toEqual('low-usage');
       });
     });
 
     describe('when the temperature is between 18 and 25 degrees', function() {
       it('it is considered medium-usage', function() {
-        expect(thermostat.energyUsage()).toEqual('amber');
+        expect(thermostat.energyUsage()).toEqual('medium-usage');
       });
     });
 
     describe('when the temperature is anything else', function() {
       it('it is considered high-usage', function() {
-        thermostat.psm = false;
+        thermostat.psmOff();
         for (var i = 0; i < 6; i++) {
           thermostat.hotter();
         }
-        expect(thermostat.energyUsage()).toEqual('red');
+        expect(thermostat.energyUsage()).toEqual('high-usage');
       });
     });
   });
